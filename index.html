@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Монитор заказов интернет-магазина — У Михалыча</title>
+  <meta name="description" content="Как работать с монитором заказов интернет-магазина в 1С:Торговля: отборы, кнопки, сборка, оплата, выдача и QR-код." />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#4208A8" />
+  <style>
+    :root {
+      --um: #4208A8;
+      --gray: #CCCCCC;
+      --ink: #111111;
+      --line: #d8d8d8;
+      --soft: #f6f6f6;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a { color: var(--um); }
+
+    .wrap {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header.top {
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .top-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 0 16px;
+    }
+
+    .brand-logo {
+      width: 280px;
+      height: auto;
+    }
+
+    .motto {
+      margin: 0;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      color: var(--um);
+    }
+
+    .hero { padding: 28px 0 8px; }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--um);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      line-height: 1.2;
+      color: var(--um);
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--um);
+    }
+
+    p { margin: 0 0 12px; }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0 8px;
+    }
+
+    .toc a {
+      text-decoration: none;
+      border: 1px solid var(--gray);
+      border-radius: 999px;
+      padding: 6px 12px;
+      color: var(--ink);
+      font-size: 15px;
+      background: #fff;
+    }
+
+    .toc a:hover { border-color: var(--um); color: var(--um); }
+
+    section.block {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    figure {
+      margin: 14px 0 18px;
+    }
+
+    figcaption {
+      margin-top: 6px;
+      color: #3a3a3a;
+      font-size: 15px;
+    }
+
+    .shot {
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .strip {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .strip img {
+      max-width: none;
+      width: auto;
+      height: auto;
+    }
+
+    ol.plain, ul.plain {
+      margin: 0 0 12px;
+      padding-left: 1.3em;
+    }
+
+    ol.plain li, ul.plain li { margin: 0 0 10px; }
+
+    .mark {
+      background: var(--soft);
+      padding: 2px 4px;
+    }
+
+    .note {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--um);
+      background: var(--soft);
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .note strong { color: var(--um); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 8px;
+    }
+
+    th, td {
+      border: 1px solid var(--gray);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--um);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    th:first-child, td:first-child { width: 34%; }
+
+    video {
+      width: min(720px, 100%);
+      background: #000;
+    }
+
+    .step {
+      margin: 0 0 8px;
+      padding-bottom: 8px;
+    }
+
+    footer.bottom {
+      border-top: 1px solid var(--line);
+      padding: 20px 0 32px;
+      color: #3a3a3a;
+      font-size: 15px;
+    }
+
+    @media (max-width: 700px) {
+      body { font-size: 17px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 22px; }
+      .top-inner { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .brand-logo { width: 250px; }
+      th:first-child, td:first-child { width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <img class="brand-logo" src="assets/logo.png" width="280" alt="У Михалыча" />
+      <p class="motto">Делаем мир крепче</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <p class="kicker">Инструкция</p>
+      <h1>Монитор заказов интернет-магазина</h1>
+      <p>Кнопка на рабочем столе в 1С:Торговля.</p>
+      <nav class="toc" aria-label="Содержание">
+        <a href="#preimuschestvo">Зачем это нам</a>
+        <a href="#kak-vyglyadit">Как выглядит</a>
+        <a href="#otbory">Отборы</a>
+        <a href="#knopki">Кнопки</a>
+        <a href="#proveden">Заказ проведён</a>
+        <a href="#stolbcy">Столбцы</a>
+        <a href="#poryadok">Порядок</a>
+        <a href="#qr">QR-код</a>
+        <a href="#prodavec">Продавец</a>
+        <a href="#cvet">Цвет строки</a>
+        <a href="#kontrol">Перед выдачей</a>
+      </nav>
+    </div>
+
+    <section class="block" id="preimuschestvo">
+      <h2>Интернет-магазин — это наше общее преимущество</h2>
+      <figure>
+        <img class="shot" src="attachments/3187581-2026_11_09_15_30_27.jpg" width="369" height="48" alt="Кнопка «Монитор заказов ИМ» в 1С:Торговля" />
+      </figure>
+      <p><strong>Работа с заказами интернет-магазина — одно из направлений нашей деятельности, а не формальность.</strong></p>
+      <p>В компании не существует «чужих» продаж: каждый онлайн-заказ требует такого же внимания, скорости и качества сервиса, как и прямая продажа в зале. От эффективности работы с этим каналом напрямую зависит выполнение планов и развитие всей команды.</p>
+      <ol class="plain">
+        <li>
+          <strong>Онлайн-продажи напрямую влияют на вашу премию.</strong>
+          <p class="mark"><strong>Каждая сумма, прошедшая через интернет-заказ в вашем магазине, учитывается в общих показателях и идет в фонд мотивации всей команды. Выдавая онлайн-заказ, вы работаете на свой личный результат.</strong></p>
+        </li>
+        <li>
+          <strong>Это ваш готовый офлайн-клиент.</strong>
+          <p>Человек, который оформил заказ с самовывозом, живет или работает совсем рядом с вами. Он уже сделал первый шаг — зашел к нам в торговый зал. Ваша улыбка, быстрая выдача и грамотная консультация превратят его в постоянного покупателя, который в следующий раз придет за покупками сразу к вам, а не пойдет к конкурентам.</p>
+        </li>
+        <li>
+          <strong>Мы — передовая технологичная компания.</strong>
+          <p>Сегодня строительный рынок меняется, и наличие собственного сильного интернет-магазина выделяет нас среди обычных строительных точек. Мы не просто «магазин у дома», мы современный сервис, который ценит время покупателей. Быть частью такой команды — значит идти в ногу со временем и быть на шаг впереди рынка.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="kak-vyglyadit">
+      <h2>Как выглядит монитор заказов интернет-магазина</h2>
+      <p>На экране три части: отборы, кнопки работы с заказом и список заказов.</p>
+      <figure>
+        <img class="shot" src="attachments/3187216-2026_11_09_13_52_55.jpg" width="2047" height="1127" alt="Монитор заказов ИМ: отборы, кнопки и список заказов" />
+      </figure>
+    </section>
+
+    <section class="block" id="otbory">
+      <h2>Отборы</h2>
+      <figure>
+        <img class="shot" src="attachments/3187217-image.png" width="898" height="113" alt="Отборы: склад, компания или частное лицо, продавец" />
+      </figure>
+      <p>Список можно сузить по магазину (складу) отгрузки и по типу покупателя: компания или частное лицо.</p>
+    </section>
+
+    <section class="block" id="knopki">
+      <h2>Кнопки</h2>
+      <p>Кнопки стоят в том порядке, в каком с ними работают.</p>
+      <figure>
+        <img class="shot" src="attachments/3187226-2026_11_09_13_54_24.jpg" width="566" height="47" alt="Кнопки: Изменить, Собран, Принять оплату, Выдача заказа" />
+      </figure>
+      <table>
+        <thead>
+          <tr>
+            <th>Кнопка</th>
+            <th>Что делает</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Изменить</strong></td>
+            <td>Открывает карточку заказа. Здесь меняют товар и дописывают данные, если это нужно.</td>
+          </tr>
+          <tr>
+            <td><strong>Собран</strong></td>
+            <td>Ставит выбранному заказу статус «Собран».</td>
+          </tr>
+          <tr>
+            <td><strong>Принять оплату</strong></td>
+            <td>Принимает оплату наличными или картой. У кнопки есть список.</td>
+          </tr>
+          <tr>
+            <td><strong>Выдача заказа</strong></td>
+            <td>Создаёт отгрузку. Статус товара в заказе становится «Отгрузить», создаётся документ «Реализация и счет-фактура».</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="block" id="proveden">
+      <h2>Сначала проверьте, что заказ проведён</h2>
+      <p>Перед оплатой и перед выдачей заказ клиента должен быть проведён.</p>
+      <figure>
+        <img class="shot" src="attachments/3187227-image.png" width="425" height="298" alt="Значок документа: с зелёной галочкой заказ проведён, без галочки — нет" />
+      </figure>
+      <ul class="plain">
+        <li>Значок документа с зелёной галочкой: заказ проведён. Можно принимать оплату и выдавать.</li>
+        <li>Значок без галочки: заказ не проведён. Сначала проведите документ.</li>
+      </ul>
+      <aside class="note">
+        <p><strong>Без паники при проблемах с заказом.</strong> Если позиции нет в наличии или возникла любая накладка — мы это видим и берем коммуникацию на себя. Операторы ИМ сами позвонят клиенту и решат вопрос. От магазинов дополнительных действий не требуется.</p>
+      </aside>
+    </section>
+
+    <section class="block" id="stolbcy">
+      <h2>Описание столбцов монитора</h2>
+      <p>физ</p>
+      <figure>
+        <div class="strip">
+          <img src="attachments/3187229-2026_11_09_13_57_57.jpg" width="2531" height="42" alt="Заголовки столбцов монитора заказов" />
+        </div>
+      </figure>
+      <table>
+        <thead>
+          <tr>
+            <th>Колонка</th>
+            <th>Что в ней</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ссылка</strong></td>
+            <td>Ссылка на заказ клиента в 1С:Торговля</td>
+          </tr>
+          <tr>
+            <td><strong>Номер</strong></td>
+            <td>Номер заказа в 1С:Торговля</td>
+          </tr>
+          <tr>
+            <td><strong>Номер заказа в ИМ</strong></td>
+            <td>Номер заказа на сайте интернет-магазина.</td>
+          </tr>
+          <tr>
+            <td><strong>Сумма документа</strong></td>
+            <td>Полная стоимость всех товаров в заказе.</td>
+          </tr>
+          <tr>
+            <td><strong>Контрагент юр физ лицо</strong></td>
+            <td>Тип покупателя: частное лицо или компания.</td>
+          </tr>
+          <tr>
+            <td><strong>Контрагент</strong></td>
+            <td>Наименование контрагента.</td>
+          </tr>
+          <tr>
+            <td><strong>Процент оплаты</strong></td>
+            <td>Какая доля заказа оплачена, в процентах.</td>
+          </tr>
+          <tr>
+            <td><strong>Процент отгрузки</strong></td>
+            <td>Какая доля товаров отгружена, в процентах.</td>
+          </tr>
+          <tr>
+            <td><strong>Собран</strong></td>
+            <td>Статус сборки. Собранный заказ отмечен зелёной галочкой.</td>
+          </tr>
+          <tr>
+            <td><strong>Оплачено</strong></td>
+            <td>Зелёная галочка, если заказ оплачен полностью.</td>
+          </tr>
+          <tr>
+            <td><strong>Реализация ФЛ</strong></td>
+            <td>Зелёная галочка, если покупатель частное лицо и создана реализация.</td>
+          </tr>
+          <tr>
+            <td><strong>Реализация ЮЛ</strong></td>
+            <td>Зелёная галочка, если покупатель компания и создана реализация.</td>
+          </tr>
+          <tr>
+            <td><strong>Склад</strong></td>
+            <td>Склад отгрузки.</td>
+          </tr>
+          <tr>
+            <td><strong>Комментарий</strong></td>
+            <td>Комментарий заказа клиента.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="block" id="poryadok">
+      <h2>В каком порядке вести заказ</h2>
+      <p>Идём по кнопкам слева направо. Сначала заказ, потом сборка, потом оплата, и только затем выдача.</p>
+
+      <div class="step">
+        <h3>Заказ</h3>
+        <figure>
+          <img class="shot" src="attachments/3187451-2026_11_09_15_04_01.jpg" width="108" height="40" alt="Кнопка «Изменить»" />
+        </figure>
+        <p>Кнопка «Изменить». Поправьте товар или данные, если это нужно.</p>
+      </div>
+
+      <div class="step">
+        <h3>Сборка</h3>
+        <figure>
+          <img class="shot" src="attachments/3187456-2026_11_09_15_04_39.jpg" width="116" height="42" alt="Кнопка «Собран»" />
+        </figure>
+        <p>Соберите товар. Когда сборка закончена, нажмите «Собран». В колонке «Собран» появится зелёная галочка. Список после этого обновится сам.</p>
+        <aside class="note">
+          <p>При установке статуса «Сборка» клиенту уходит СМС с ссылкой на QR-код, который при сканировании ТСД в мониторе заказов, отбирает нужный заказ клиента моментально.</p>
+        </aside>
+      </div>
+
+      <div class="step">
+        <h3>Оплата</h3>
+        <figure>
+          <img class="shot" src="attachments/3187460-2026_11_09_15_05_15.jpg" width="216" height="122" alt="Кнопка «Принять оплату» и её список" />
+        </figure>
+        <p>Если заказ уже оплачен на сайте, деньги второй раз не берём. Смотрите «Процент оплаты» и галочку «Оплачено». Если оплаты нет, нажмите «Принять оплату»: наличные или карта. Когда закроете окно оплаты, список обновится сам: изменятся процент оплаты и отметка «Оплачено».</p>
+      </div>
+
+      <div class="step">
+        <h3>Выдача</h3>
+        <figure>
+          <img class="shot" src="attachments/3187461-2026_11_09_15_05_59.jpg" width="168" height="41" alt="Кнопка «Выдача заказа»" />
+        </figure>
+        <p>Кнопку «Выдача заказа» нажимаем один раз.</p>
+        <p>Программа делает четыре вещи:</p>
+        <ul class="plain">
+          <li>Товары в заказе переводит в статус отгрузки.</li>
+          <li>Создаёт и проводит документ «Реализация».</li>
+          <li>На основании «Реализации» создаёт «Счёт-фактуру».</li>
+          <li>Показывает на экране сообщение о результате.</li>
+        </ul>
+        <aside class="note">
+          <p>Кнопку «Выдача заказа» нажимают только один раз.</p>
+          <p>Повторное нажатие по уже выданному заказу вторую реализацию не создаст.</p>
+          <p>Если перед выдачей был отсканирован штрихкод продавца, его данные будут в документе реализации.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="block" id="qr">
+      <h2>Быстрый поиск интернет-заказа в Мониторе ИМ</h2>
+      <ol class="plain">
+        <li>
+          Попросите клиента показать QR-код заказа.
+          <figure>
+            <video controls preload="metadata" src="attachments/3192965-Kak-nayti-QR_kod-v-internet_zakaze-IM.mp4">
+              <a href="attachments/3192965-Kak-nayti-QR_kod-v-internet_zakaze-IM.mp4">Как найти QR-код в интернет-заказе ИМ</a>
+            </video>
+            <figcaption><a href="attachments/3192965-Kak-nayti-QR_kod-v-internet_zakaze-IM.mp4">Как найти QR-код в интернет-заказе ИМ</a></figcaption>
+          </figure>
+        </li>
+        <li>Откройте Монитор заказов ИМ.</li>
+        <li>Отсканируйте код сканером.</li>
+        <li>
+          Быстрый поиск в Мониторе ИМ сразу покажет Вам заказ клиента.
+          <figure>
+            <div class="strip">
+              <img src="attachments/3192970-image-_2_.jpg" width="1280" height="172" alt="Заказ клиента после сканирования QR-кода" />
+            </div>
+          </figure>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="prodavec">
+      <h2>Продавец: штрихкод TB-</h2>
+      <p>Поле «Продавец» стоит в быстрых отборах, рядом со «Складом» и «Компания/частное лицо». Оно заполняется само, когда сканируют штрихкод. Вручную сотрудника туда не вписать.</p>
+      <figure>
+        <img class="shot" src="attachments/3187465-image.png" width="732" height="151" alt="Поле «Продавец» в быстрых отборах" />
+      </figure>
+      <ul class="plain">
+        <li>Штрихкод продавца начинается с TB-. Пример: TB-Иванов.</li>
+        <li>После сканирования в поле «Продавец» подставляется этот сотрудник.</li>
+        <li>В начале смены штрихкод лучше отсканировать сразу. При выдаче сведения о продавце сами попадут в документ реализации. Данная продажа упадет в персональную мотивацию продавца.</li>
+        <li>Если штрихкод не распознан, на экране будет сообщение, что объект не найден.</li>
+      </ul>
+    </section>
+
+    <section class="block" id="cvet">
+      <h2>Цвет строки</h2>
+      <p>Кроме галочек в колонках, строка заказа подсвечивается цветом:</p>
+      <figure>
+        <img class="shot" src="attachments/3187504-image.png" width="909" height="165" alt="Зелёная, оранжевая и серая строки заказа" />
+      </figure>
+      <table>
+        <thead>
+          <tr>
+            <th>Цвет строки</th>
+            <th>Что означает</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Зелёный</strong></td>
+            <td>Выдача оформлена. Документ «Реализация» создан.</td>
+          </tr>
+          <tr>
+            <td><strong>Оранжевый</strong></td>
+            <td>Выдача ещё не оформлена. Документа «Реализация» нет.</td>
+          </tr>
+          <tr>
+            <td><strong>Серый</strong></td>
+            <td>Заказ отменён.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="block" id="kontrol">
+      <h2>Контрольные точки перед выдачей</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Проверка</th>
+            <th>Как должно быть</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Склад</strong></td>
+            <td>Ваш магазин. Если фильтр по складу мешает найти заказ, отбор сбрасывают крестиком</td>
+          </tr>
+          <tr>
+            <td><strong>Продавец</strong></td>
+            <td>В начале смены отсканирован штрихкод TB-. Поле руками не заполняют</td>
+          </tr>
+          <tr>
+            <td><strong>Заказ</strong></td>
+            <td>Проведён: у значка документа зелёная галочка</td>
+          </tr>
+          <tr>
+            <td><strong>Сборка</strong></td>
+            <td>Нажата «Собран», в колонке зелёная галочка</td>
+          </tr>
+          <tr>
+            <td><strong>Оплата</strong></td>
+            <td>Полная: процент и галочка «Оплачено». Если на сайте не оплачено, деньги приняты кнопкой</td>
+          </tr>
+          <tr>
+            <td><strong>Строка</strong></td>
+            <td>Пока выдачи нет, строка оранжевая. Серую, отменённую, не выдаём</td>
+          </tr>
+          <tr>
+            <td><strong>Выдача</strong></td>
+            <td>Кнопка нажата один раз. Реализация проведена, счёт-фактура создана, на экране есть сообщение</td>
+          </tr>
+          <tr>
+            <td><strong>После выдачи</strong></td>
+            <td>Строка зелёная: реализация есть. Повторная выдача вторую реализацию не создаёт</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="bottom">
+    <div class="wrap">
+      <p>Академия «У Михалыча». Делаем мир крепче.</p>
+    </div>
+  </footer>
+</body>
+</html>
